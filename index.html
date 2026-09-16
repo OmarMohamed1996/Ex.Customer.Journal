@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>2S Egypt | تقييم الفلور ورحلة العميل الميدانية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --card-bg: #ffffff;
+      --ink: #111111;
+      --ink-secondary: #52525b;
+      --border: #e4e4e7;
+      --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --success: #15803d;
+      --success-bg: #f0fdf4;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header.sticky-header {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.98);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .header-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      background: var(--ink);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 3px 10px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 1px;
+    }
+
+    .brand-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      color: var(--ink-secondary);
+    }
+
+    .meta-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .timer-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 5px 12px;
+      border-radius: 50px;
+    }
+
+    .timer-badge.urgent {
+      background: var(--danger);
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.04); }
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 5px;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--ink);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    main.content-area {
+      flex: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 18px 14px calc(50px + env(safe-area-inset-bottom));
+    }
+
+    .view-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      padding: 26px 18px;
+      margin-bottom: 20px;
+    }
+
+    .intro-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .intro-desc {
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .rule-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .form-group {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 1rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      outline: none;
+      background: #fafafa;
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--ink);
+      background: #fff;
+    }
+
+    .error-hint {
+      color: var(--danger);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      background: var(--ink);
+      color: #ffffff !important;
+      border: none;
+      padding: 15px 20px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: center;
+      touch-action: manipulation;
+    }
+
+    .btn-primary:active {
+      background: #333333;
+    }
+
+    .question-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+      scroll-margin-top: 90px;
+    }
+
+    .question-card.missing {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
+      background: #fffcfc;
+    }
+
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 6px;
+    }
+
+    .q-badge {
+      font-weight: 800;
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+    }
+
+    .q-weight {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 50px;
+    }
+
+    .q-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 14px;
+      line-height: 1.55;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-card {
+      display: flex;
+      align-items: center;
+      padding: 13px 15px;
+      background: #fafafa;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      touch-action: manipulation;
+    }
+
+    .option-card.selected {
+      background: var(--ink) !important;
+      color: #ffffff !important;
+      border-color: var(--ink) !important;
+    }
+
+    .opt-letter {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.06);
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-left: 10px;
+      flex-shrink: 0;
+    }
+
+    .option-card.selected .opt-letter {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .math-field {
+      width: 100%;
+      max-width: 280px;
+      padding: 12px 14px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      background: #fafafa;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .math-field:focus {
+      border-color: var(--ink);
+      background: #fff;
+    }
+
+    .score-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      border: 5px solid var(--border);
+    }
+
+    .score-num {
+      font-size: 2.1rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .score-total {
+      font-size: 0.8rem;
+      color: #a1a1aa;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      color: #fff !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 0.98rem;
+      border: none;
+      cursor: pointer;
+      margin: 18px 0;
+      touch-action: manipulation;
+    }
+
+    .review-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .review-item.correct { border-right: 5px solid var(--success); }
+    .review-item.wrong { border-right: 5px solid var(--danger); }
+
+    .answer-tag {
+      font-size: 0.84rem;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      margin-top: 4px;
+      font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .tag-c { background: var(--success-bg); color: var(--success); }
+    .tag-w { background: var(--danger-bg); color: var(--danger); }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <header class="sticky-header">
+    <div class="header-container">
+      <div class="brand-box">
+        <div class="brand-logo">2S</div>
+        <div>
+          <div class="brand-title">2S Egypt Retail Assessment</div>
+          <div class="brand-sub">Floor Operations & Customer Journey (37 Qs)</div>
+        </div>
+      </div>
+      <div class="meta-box">
+        <div id="timerBadge" class="timer-badge">
+          <span>⏳</span>
+          <span id="timerDisplay">25:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="progress-bar-container">
+      <div id="progressBar" class="progress-bar-fill"></div>
+    </div>
+  </header>
+
+  <main class="content-area">
+
+    <!-- Screen 1: Registration View -->
+    <div id="screenIntro" class="view-card">
+      <h1 class="intro-title">اختبار مهارات البيع ورحلة العميل وحساب المؤشرات</h1>
+      <p class="intro-desc">تقييم ميداني شامل (37 سؤالاً) يغطي سيناريوهات الفلور، مراحل رحلة العميل السبعة، ومسائل حسابية لمؤشرات الأداء البيعي.</p>
+
+      <div class="rules-grid">
+        <div class="rule-item">
+          <span>⏱️</span>
+          <span><strong>المدة المحددة:</strong> 25 دقيقة تبدأ فور الضغط على الزر، مع تسليم إجباري عند انتهاء الوقت.</span>
+        </div>
+        <div class="rule-item">
+          <span>📊</span>
+          <span><strong>المجموع:</strong> 37 سؤالاً (35 اختيار من متعدد + مسألتين حسابيتين) بمجموع 100 درجة.</span>
+        </div>
+        <div class="rule-item">
+          <span>🔒</span>
+          <span><strong>محاولة واحدة فقط:</strong> الاختبار محمي ومربوط بالجهاز، والتحديث لن يصفر الوقت.</span>
+        </div>
+        <div class="rule-item">
+          <span>📲</span>
+          <span><strong>تقرير فوري:</strong> مراجعة كاملة للإجابات مع إرسال النتيجة للإدارة عبر واتساب.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <form onsubmit="event.preventDefault(); startQuizDirect();">
+          <label for="inputName" class="form-label">اكتب اسمك أو الكود الوظيفي للبدء:</label>
+          <input type="text" id="inputName" class="form-input" placeholder="اكتب اسمك هنا..." autocomplete="off">
+          <div id="nameError" class="error-hint">برجاء كتابة الاسم أولاً للبدء</div>
+          <button type="submit" id="startBtn" class="btn-primary">بدء التقييم الآن 👈</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Screen 2: Locked View -->
+    <div id="screenLocked" class="view-card hidden" style="text-align: center;">
+      <div style="font-size: 2.5rem; margin-bottom: 10px;">🔒</div>
+      <h2 style="font-weight: 800; margin-bottom: 6px;">تم تسجيل نتيجتك مسبقاً</h2>
+      <p style="color: var(--ink-secondary); font-size: 0.9rem; margin-bottom: 16px;">
+        لقد أتممت هذا الاختبار بالفعل، ولا يمكن تكرار المحاولة.
+      </p>
+      <div id="lockedScoreSummary" style="font-weight: 800; font-size: 1.1rem; color: var(--ink);"></div>
+      <button type="button" onclick="sendWhatsappReport()" class="btn-primary" style="max-width: 280px; margin: 16px auto 0;">إعادة إرسال النتيجة إلى الإدارة</button>
+    </div>
+
+    <!-- Screen 3: Questions View -->
+    <div id="screenQuiz" class="hidden">
+      <div id="questionsContainer"></div>
+      <div style="margin-top: 20px;">
+        <button type="button" id="submitExamBtn" onclick="submitQuizFinal()" class="btn-primary">تسليم الاختبار النهائي</button>
+      </div>
+    </div>
+
+    <!-- Screen 4: Results View -->
+    <div id="screenResult" class="view-card hidden" style="text-align: center;">
+      <div class="score-circle">
+        <span id="scoreText" class="score-num">0</span>
+        <span class="score-total">من 100</span>
+      </div>
+      <h2 id="userNameDisplay" style="font-size: 1.25rem; font-weight: 800; margin-bottom: 4px;">--</h2>
+      <p id="userGradeStatus" style="font-size: 0.88rem; font-weight: 600; color: var(--ink-secondary); margin-bottom: 16px;">--</p>
+
+      <button type="button" onclick="sendWhatsappReport()" class="whatsapp-btn">
+        <span>📲</span>
+        <span>إرسال تقرير النتيجة المعتمد للإدارة عبر WhatsApp</span>
+      </button>
+
+      <div style="text-align: right; margin-top: 24px;">
+        <div style="font-size: 1.05rem; font-weight: 800; margin-bottom: 12px;">
+          <span>📋 التفريغ والمراجعة التفصيلية لإجاباتك:</span>
+        </div>
+        <div id="reviewBoxList"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const memoryStorage = {};
+    const safeStorage = {
+      getItem: function(k) {
+        try { return window.localStorage ? window.localStorage.getItem(k) : memoryStorage[k]; }
+        catch(e) { return memoryStorage[k] || null; }
+      },
+      setItem: function(k, v) {
+        try { if (window.localStorage) window.localStorage.setItem(k, v); }
+        catch(e) { memoryStorage[k] = v; }
+      }
+    };
+
+    const quizData = [
+      { id: 1, type: "mcq", w: 2.6, q: "أول ما العميل يدخل من باب المحل، إيه أصح تصرف في منطقة الـ (Transition Zone) عشان نكسر الرهبة من غير ما نحسسه إنه متراقب؟", opts: ["تجري عليه فوراً وتسأله: 'بتدور على حاجة معينة عشان أساعدك بسرعة؟'", "تبتسم وترحب ترحيب دافي، وتسيبه كام ثانية ياخد نفسه ويستكشف الفلور وإنت متواجد في مجال رؤيته وبمسافة تواصل مريحة.", "تعمل نفسك مش واخد بالك منه خالص لحد ما يمسك أول قطعة عشان ميتوترش.", "تلزق فيه وتبدأ تشرح له كل عروض الـ Promotions اللي شغالة النهاردة."], c: 1 },
+      { id: 2, type: "mcq", w: 2.6, q: "الحسبة بتقول إنك أول ما تستقبل العميل صح بترحيب شيك وتسأله أسئلة ذكية في الـ Entry، نسبة إنه يشتري بتنط من 50% لكام؟", opts: ["64%", "75%", "85%", "92%"], c: 0 },
+      { id: 3, type: "mcq", w: 2.6, q: "لو لقيت عميل داخل ومحتار وعمال يلف بعينه في المحل، إيه الحركة الغلط جداً اللي تضيع الـ First Impression؟", opts: ["تقوله: 'منورنا يا فندم' وتسيبه ثواني يستوعب المكان.", "تفضل واقف على مسافة معقولة بحيث لو شاورلك يلاقيك في ثانية.", "تفضل مطبق الهدوم على الترابيزة وتديله ضهرك وتعمل مش واخد بالك منه.", "تقف بوقفة مريحة ومبتسم وجاهز تتدخل أول ما يطلب هو."], c: 2 },
+      { id: 4, type: "mcq", w: 2.6, q: "ليه دايماً بنقول في مرحلة الـ Need Discovery: بلاش تسأل أسئلة مقفولة إجابتها (آه أو لأ)؟", opts: ["عشان العميل ميزهقش من الرغي ويخرج بسرعة.", "عشان الأسئلة المفتوحة بتخلي العميل يتكلم براحته وتفهم ذوقه وميقولكش: 'شكراً، بتفرج بس'.", "عشان تبين للعميل إنك فاهم ومسيطر على البيعة أكتر منه.", "عشان تجبره يشتري قطع غالية من غير ما يفكر."], c: 1 },
+      { id: 5, type: "mcq", w: 2.6, q: "عميل دخل وقالك وش: 'شكراً، أنا بتفرج بس'.. إيه أذكى رد تقوله يريحه وميضيعش العميل؟", opts: ["\"براحتك خالص يا فندم، المحل محلك ولو احتجت مقاس أو حبيت تشوف خامة معينة أنا معاك في أي وقت\".", "تسيبه خالص وتروح تقف ورا الكاشير وماتقربش منه إلا لو نادى باسمك.", "تقوله: 'طب تعالى بس اتفرج على العرض ده الأول قبل ما تمشي'.", "تفضل ماشي وراه خطوة بخطوة وكل ما يمسك حاجة تشرحله سعرها."], c: 0 },
+      { id: 6, type: "mcq", w: 2.6, q: "عميلة وقفت ومسكت خامة فستان وعمالة تقلب في المقاس والتيكت.. تتدخل إزاي من غير ما تضايقها؟", opts: ["تاخد الفستان من إيدها على طول وتقولها: 'هشيلولك على الكاشير عشان نجهزه'.", "تسيبها براحتها وماتنطقش إلا لو هي دخلت البروفة.", "تقرب بذوق وتقولها معلومة تفيدها: 'الخامة دي ليكرا خفيفة مش بتكش في الغسيل خالص ومريحة جداً، تحبي نطلع مقاسك نقيسه؟'.", "تسألها على طول: 'الفستان ده غالي ولا سعره مناسب ليكي؟'."], c: 2 },
+      { id: 7, type: "mcq", w: 2.6, q: "وإنت بتتكلم مع العميل، يعني إيه تطبق (Active Listening) وتسمع بجد؟", opts: ["تقاطعه أول ما يقول إنه بيحب لون معين عشان تجيبله البيست سيلر بتاعك.", "تسيبه يتكلم وإنت عمال ترتب في دماغك هترد عليه بإيه وتقنعه إزاي.", "تسمع كلامه للآخر من غير ما تقطعه، وتلقط هو مركز على إيه (سعر، خامة، هدية، راحة) وتعيد عليه نفس النقطة عشان تطمنه.", "تحاول تقنعه إن الموديل اللي هو عاوزه قديم وإن التريند حاجة تانية خالص."], c: 2 },
+      { id: 8, type: "mcq", w: 2.6, q: "لما تطبق طريقة الـ (FAB Method)، إيه الفرق بين إنك تقول ميزة وبين إنك تقول 'منفعة تفيده هو'؟", opts: ["الميزة إنك تقول: 'القطعة دي قطن 100%'، والمنفعة إنك تقول: 'دي خامة مش هتعرقك في حر الصيف وهتديك قمة الراحة طول اليوم'.", "الميزة إنك تقول سعرها رخيص، والمنفعة إنك تقول عليها سحب عالي.", "الميزة هي بلد المنشأ، والمنفعة هي طريقة الغسيل.", "مفيش فرق، الاتنين معناهم إنك بتشكر في البضاعة وخلاص."], c: 0 },
+      { id: 9, type: "mcq", w: 2.6, q: "ليه حركة إنك 'تسلم القطعة في إيد العميل يمسكها' بتفرق جداً في إتمام البيعة؟", opts: ["عشان العميل يتحرج يسيبها ويضطر يشتريها.", "عشان توفر على نفسك شيل الهدوم ورصها كل شوية.", "عشان مجرد لمس الخامة والإحساس بنعومتها بيحسس العميل نفسياً إن القطعة دي بقت بتاعته وخلاص.", "عشان يتأكد بنفسه إن مفيهاش أي عيب تقفيل قبل الكاشير."], c: 2 },
+      { id: 10, type: "mcq", w: 2.6, q: "إيه أكبر غلطة بيقع فيها البائع وهو بيفرّج العميل وبتخليه يفقد الثقة في المحل فوراً؟", opts: ["إنه يفرجه على قطعتين أو تلاتة بس عشان ميتشتتش.", "إنه يشوف المقاس في السيستم الأول قبل ما يتكلم.", "إنه يعلق العميل بموديل شيك جداً ويقنعه بيه، وبعدين يكتشف إن مقاسه مش موجود أصلاً في الفرع.", "إنه يربط بين خامة اللبس وبين الجو والاستخدام اليومي."], c: 2 },
+      { id: 11, type: "mcq", w: 2.6, q: "مجرد ما العميل ياخد القطعة ويدخل البروفة يقيس، فرصة إن البيعة تتقفل بتوصل لكام؟", opts: ["40%", "60%", "بتعدي الـ 75% لـ 80%", "100% خلاص مفيهاش كلام"], c: 2 },
+      { id: 12, type: "mcq", w: 2.6, q: "إيه حركة الصنعة اللي بيعملها البياع الشاطر أول ما يوصل العميل لحد باب البروفة؟", opts: ["ياخد مع القطعة مقاس تاني (أكبر أو أصغر نمرة) أو لون بديل ويقف قريب من البروفة عشان لو طلب تبديل يلاقيه جاهز في ثانية.", "يقفل الباب ويسيب العميل ربع ساعة كاملة ياخد راحته على الآخر.", "يخبط على الباب كل نص دقيقة ويقوله: 'ها يا فندم المقاس عامل إيه؟'.", "يروح للكاشير بسرعة يطبع الفاتورة ويكيسها عشان ينجز وقت."], c: 0 },
+      { id: 13, type: "mcq", w: 2.6, q: "العميل خرج من البروفة لابس القطعة وعاجباه ومبتسم.. إزاي تستغل اللحظة دي عشان تعلي الـ (ATV) وقيمة الفاتورة؟", opts: ["تسكت تماماً وماتتكلمش عشان ميتراجعش ويرجعها.", "تجامل ذوقه بشياكة وتسأله عن راحته، وتعرض عليه بنطلون أو شورت مكمل يخليه ياخدهم طقم كامل شيك.", "تقوله: 'دي آخر حتة في المحل لو مخدتهاش دلوقتي هتطير'.", "تسأله بسرعة: 'هتدفع كاش ولا فيزا؟'."], c: 1 },
+      { id: 14, type: "mcq", w: 2.6, q: "العميل طلع من البروفة وقالك: 'البنطلون ضيق شوية ومش مظبوط عليا'.. تتصرف إزاي في ثواني؟", opts: ["تقوله: 'هو القطن بيريح مع اللبس متقلقش هيفك معاك'.", "ترجع البنطلون مكانه وتقوله: 'للأسف ده اللي عندنا شوف موديل تاني'.", "تطلع المقاس الأكبر اللي إنت مجهزه أصلاً معاك: 'القصة دي مجسمة عشان كده أنا عامل حسابي في نمرة أكبر هتظبط معاك جداً، قيس دي وشوف الفرق'.", "تعتذرله وتقوله: 'طب روح للترزي يوسعهولك سنتي'."], c: 2 },
+      { id: 15, type: "mcq", w: 2.6, q: "عميل اختار بيجامة وعجبته خاماتها، بس اعترض على السعر وقال: 'حاسس إن سعرها عالي شوية'.. إيه الصياغة الاحترافية لتطبيق الـ (3F)؟", opts: ["\"أنا فاهم قصد حضرتك ومقدر جداً اهتمامك بالسعر (Feel)، وفعلاً كان في عملاء في الأول بيحسوا بنفس النقطة دي (Felt)، بس لما جربوا متانة تقفيل القطن المعالج وثبات ألوانه مع الغسيل المتكرر، اكتشفوا إنها بتعيش أضعاف القطع العادية فكانت استثماراً أوفر ليهم (Found)\".", "\"أنا مقدر وجهة نظرك طبعاً (Feel)، بس كل الناس عارفة إن خاماتنا بريميوم وبتستاهل (Felt)، واحنا متأكدين إنك مش هتلاقي الجودة دي في أي مكان تاني بنفس الرقم ده (Found)\".", "\"عندك حق الأسعار مرتفعة عموماً (Feel)، وفي زمايل في الفروع لاحظوا تردد العملاء (Felt)، بس الشركة بتقدملنا سياسة استرجاع 14 يوم لو حسيت إنها متستاهلش المبلغ ده (Found)\".", "\"أنا فاهم حسابات حضرتك تماماً (Feel)، والعملاء دايماً بيقارنوا بالأسواق الخارجية (Felt)، بس لو حابب نوفر لحضرتك خصم مباشر نقدر ندخل كود ترويجي من الفرع حالا (Found)\"."], c: 0 },
+      { id: 16, type: "mcq", w: 2.6, q: "القاعدة بتقول: لما العميل يطلعلك اعتراض على السعر أو الموديل، ده في الحقيقة معناه إيه؟", opts: ["إنه عايز يضيع وقت ويفاصل ومعهوش فلوس كفاية.", "إنه عاوز يحرجك وخلاص قدام زمايلك في الفرع.", "ده مش رفض للبيعة، ده طلب مستخبي عايزك تطمنه أكتر وتثبتله إن القطعة تستاهل فلوسها.", "إشارة إنك تسيبه يمشي وماتضغطش عليه."], c: 2 },
+      { id: 17, type: "mcq", w: 2.6, q: "عميل مسك طقم منزلي قَصّته Modern وعاجباه الخامة جداً، بس تردد وقالك: 'الاستايل ده حاسه مش بتاعي ومش متعود عليه'.. إزاي تقوده لبديل يحفظ البيعة باحترافية؟", opts: ["\"حضرتك ممكن تاخده وتجربه في البيت براحتك، والفرع بيتيح لحضرتك استبدال الموديل في أي وقت بالفاتورة لو حسيت إنه مش مريحك\".", "\"عندك حق تماماً، الراحة النفسية والتعود هما الأساس.. ما دام القماشة عجبتك، تعالى أوريك قصة ثانية كلاسيك بنفس الخامة دي بالظبط هتحس إنها قريبة جداً لذوقك\".", "\"القصة دي بتفرق جداً في اللبس عن الشماعة، ولو قستها في البروفة مع تظبيط المقاس هتلاقيها لايقة عليك أكتر من الموديلات التقليدية\".", "\"هو فعلاً موديل جريء شوية، بس ده أحدث خط إنتاج نازل ومحقق أعلى مبيعات عندنا الأسبوع ده عشان كده بننصح بتجربته\"."], c: 1 },
+      { id: 18, type: "mcq", w: 2.6, q: "إيه الفرق في الشغل على الفلور بين الـ (Cross-selling) والـ (Upselling)؟", opts: ["الـ Cross-selling بيكون عند الكاشير بس، والـ Upselling في البروفة بس.", "الـ Cross-selling يعني تزود قطع تانية مكمله (UPT)، والـ Upselling يعني تاخد نفس الحاجة بس خامة أعلى أو باقة توفرله وتعلي قيمة الفاتورة (ATV).", "الـ Cross-selling للبضاعة الراكدة، والتانية للموديلات الجديدة.", "الاتنين معناهم تبيع وخلاص ومفيش فرق بينهم."], c: 1 },
+      { id: 19, type: "mcq", w: 2.6, q: "عميل استقر خلاص على بيجامة كاجوال منزلية.. إيه الأسلوب الأرقى لترشيح قطعة مكملة (Cross-selling) تعلي الـ UPT كخبير مظهر مش كبياع بيزود وخلاص؟", opts: ["\"ذوق حضرتك ممتاز في تنسيق الألوان.. بما إنك اخترت درجات الرمادي دي، السليبر المبطن ده مكمل للألوان وهيديك راحة وعزل ممتاز في البيت، تحب تشوف المقاس المناسب لحضرتك؟\".", "\"بما إن حضرتك بتخلص البيجامة، إحنا عاملين باقة مكملات لو ضفت عليها شبشب وشراب بتاخد نقط إضافية على كارت المشتريات النهاردة\".", "\"البيجامات من النوع ده بيبقى الأفضل تاخد معاها طقم هوم وير قطني داخلي من نفس الماتريال عشان تحافظ على عمر القطعة الخارجية\".", "\"في إكسسوارات منزلية وسليبرز لسه واصلة ومحطوطة جنب الكاشير، ممكن نمر عليها وإحنا رايحين نحاسب لو حابب تلقي نظرة سريعة\"."], c: 0 },
+      { id: 20, type: "mcq", w: 2.6, q: "إيه الاستراتيجية الميدانية الأذكى لرفع مؤشر الـ (UPT) عند منطقة الكاشير (Cash Out) بطريقة انسيابية؟", opts: ["ترشيح منتجات صغيرة سريعة القرار ومنسجمة مع مشترياته (زي الشرابات القطنية أو مناديل العناية بالأقمشة) المعروضة في محيط الكاونتر.", "اقتراح قطع خفيفة من التيشيرتات البيزك المعلقة خلف الكاشير كفرصة لشراء تيشيرت إضافي قبل إنهاء الفاتورة.", "تذكير العميل بالحد الأدنى لقيمة الفاتورة اللي بيفتح له عروض التقسيط أو الشحن المجاني لدعوته لإضافة أي قطعة سريعة.", "استعراض كاتالوج الإكسسوارات الجلدية والأحزمة على الشاشة أمام العميل أثناء قيام الكاشير بمسح الباركود."], c: 0 },
+      { id: 21, type: "mcq", w: 2.6, q: "لما العميل يوصل للكاشير، ليه لازم تطمنه على اختياراته وتقوله: 'ذوق حضرتك ممتاز'؟", opts: ["عشان تلخمه وهو بيدفع وميركزش في الفكة.", "عشان تحميه من تردد وندم ما بعد الشراء (Buyer’s Remorse) ويخرج وهو مبسوط وراضي عن قراره.", "عشان تكسب وقت وإنت بتكيس المنتجات.", "عشان تخليه يتنازل عن استلام الفاتورة الورقية."], c: 1 },
+      { id: 22, type: "mcq", w: 2.6, q: "عند الكاشير وإنت بتطلب رقم موبايل العميل لتسجيله على السيستم، إيه الصياغة اللي بتخلي العميل يتجاوب ويرحب بإعطاء بياناته؟", opts: ["\"ممكن رقم تليفون حضرتك عشان نضيف لحضرتك نقاط مشتريات النهاردة، وتستفيد بخصم الكوبون والعروض الحصرية للعملاء المميزين أول بأول؟\".", "\"ممكن نسجل رقم حضرتك على السيستم عشان نربط الفاتورة باسمك وتسهل على نفسك الاسترجاع أو الاستبدال في أي وقت بدون الورقة؟\".", "\"لو حابب تفعل كارت المتابعة وتوصلك رسايل الـ SMS أول ما ينزل الكولكشن الجديد، نقدر نسجل رقمك في ثواني؟\".", "\"حضرتك مسجل معانا قبل كده في قاعدة عملاء الفرع ولا دي أول زيارة نحتاج نسجل فيها الاسم ورقم الموبايل؟\"."], c: 0 },
+      { id: 23, type: "mcq", w: 2.6, q: "عميل لف في الفلور وبعدين اتجه لبوابة الخروج وإيده فاضية.. إيه الأسلوب الاحترافي المتزن لتطبيق بروتوكول (Save the Lost Sale)؟", opts: ["تروح تقف قدام البوابة وتسأله مباشرة: 'هل في أي ملاحظة على الأسعار أو الخدمة خلت حضرتك تقرر متشتريش النهاردة؟'.", "تقترب بخطوة هادئة وابتسامة راقية: 'نورتنا يا فندم، أتمنى تكون جولتك كانت لطيفة.. هل كنت بتدور على موديل أو مقاس معين وملقتوش عشان أقدر أساعدك فيه؟'.", "تناديه بذوق: 'يا فندم لو المقاس مش مظبوط في تشكيلة تانية في المخزن الداخلي ممكن أجيبهالك في دقيقة قبل ما تتحرك'.", "تبتسم وتقوله: 'شرفتنا يا فندم، متنساش إن عروض الأسبوع هتنتهي بكرة لو حابب تلحق أي قطعة عجبتك قبل ما تمشي'."], c: 1 },
+      { id: 24, type: "mcq", w: 2.6, q: "وقفت العميل اللي كان خارج، وقالك: 'مقاسي مش موجود في القطعة دي'.. الإجراء السريع هو:", opts: ["تقوله: 'معلش ابقى تابع صفحتنا على النت لما الشحنة تنزل'.", "تفتح السيستم فوراً وتشوف المخزن أو أقرب فرع من فروعنا وتحجزها للعميل أو توفرهاله في أسرع وقت.", "تقنعه ياخد المقاس الصغير ويبقى يوسعه عند الترزي.", "تقوله: 'الموديل ده خلص من مصر كلها ومش هينزل تاني'."], c: 1 },
+      { id: 25, type: "mcq", w: 2.6, q: "الدور القيادي اليومي للـ (Team Leader) على أرض الفلور بيتحقق بشكل مثالي لما يركز على:", opts: ["مراقبة توزيع العملاء في الفلور، وتوجيه البائعين للعملاء غير المخدومين، وتحقيق التوازن المرن بين المهام التشغيلية وأولوية الخدمة.", "التواجد المستمر بجانب الكاشير لمراجعة الفواتير وحل مشكلات الخزينة ونسب الخصومات مع العملاء أولاً بأول.", "الإشراف المباشر على منطقة البروفات وتنظيم طوابير القياس لضمان عدم تأخير العملاء في أوقات الذروة.", "التركيز على متابعة تقفيل التارجت الفردي لكل بائع على مدار الشيفت وعمل اجتماعات توجيه سريعة في البريك."], c: 0 },
+      { id: 26, type: "mcq", w: 2.6, q: "النسبة اللي بتوصل لـ 88% من إتمام عملية الشراء في خريطة رحلة العميل بتتحقق فين بالظبط؟", opts: ["أول ما يخطو من باب المحل.", "وهو بيتفرج على الستاندات.", "في مرحلة الـ Close The Sale بعد ما طلع من البروفة وأكد على القطع ورايحين للكاشير.", "بعد ما الفاتورة تطبع وتتقفل على الـ POS."], c: 2 },
+      { id: 27, type: "mcq", w: 2.6, q: "لما تنصح العميل عند الكاشير بطريقة الغسيل الصح لكل قطعة، إنت كده بتعمل إيه؟", opts: ["بتبين احترافية وبتعمل Retention وولاء للبراند وبتقلل أي مشاكل أو شكاوى ترجيع بعدين.", "بتعطله عشان تخلص رص الدرج براحتك.", "بتخلي مسؤليتك عشان لو باظت يرجع للورقة.", "بتحاول تقنعه يشتري مساحيق غسيل مخصصة متوفرة بالفرع."], c: 0 },
+      { id: 28, type: "mcq", w: 2.6, q: "لو عميل خرج ومشتريش فعلاً بعد ما حاولت تساعده بكل ذوق، تختم معاه إزاي؟", opts: ["تسيبه وماتردش عليه وتبص الناحية التانية.", "تبتسم وتقوله: 'شرفتنا في أي وقت وبإذن الله تلاقي اللي يعجبك في الكولكشن الجديد لما ينزل'.", "تحط اسمه في قايمة العملاء اللي بيضيعوا وقت.", "تجبره يملى استمارة شكوى قبل ما يعدي من البوابة."], c: 1 },
+      { id: 29, type: "mcq", w: 2.6, q: "ليه بنشجع العميل يملى الاستبيان (Survey) وهو عند الكاشير؟", opts: ["عشان نعرف رأيه بأمانة، ونديله كود خصم يخليه يرجع يشتري تاني (Give a reason to return).", "عشان الكاشير يرتاح من عد الفلوس.", "عشان نتأكد إنه مش واخد حاجة زيادة في الكيس.", "عشان نبعتله إعلانات من غير موافقته."], c: 0 },
+      { id: 30, type: "mcq", w: 2.6, q: "لو لقيت البروفات كلها زحمة ومليانة وفيه ناس واقفة مستنية، الصح تعمل إيه؟", opts: ["تقولهم: 'معلش حاسبوا واقيسوا في البيت ولو وحشة تعالوا بدلوها'.", "تقف قريب من البروفات، تساعد اللي خارجين، وتجهز المقاسات وتطمن الناس المنتظرة إن دورهم جاي في ثانية.", "تقولهم يقيسوا الهدوم فوق هدومهم في نص الفلور.", "تروح تقعد في المخزن لحد ما الزحمة تروق."], c: 1 },
+      { id: 31, type: "mcq", w: 2.6, q: "عميل داخل الفلور في قسم الـ Home Wear ومتردد.. إيه السؤال الاستكشافي المفتوح اللي يفتح حوار راقي ومحدد من غير إحراج؟", opts: ["\"بتدور على حاجة قطنية مريحة وخفيفة للاستخدام اليومي في البيت، ولا طقم استقبال وخروج عملي؟\".", "\"تحب نركز على موديلات الكولكشن الصيفي الجديد ولا تشوف العروض والخصومات المتاحة حالياً في الفرع؟\".", "\"حضرتك بتفضل القصات الواسعة المريحة ولا ستايلات الـ Slim Fit اللي واخدة شكل الجسم أكتر؟\".", "\"بتتسوق النهاردة لنفسك يا فندم ولا بتدور على هدية شيك نساعدك في اختيار مقاسها؟\"."], c: 0 },
+      { id: 32, type: "mcq", w: 2.6, q: "لو عايز تعمل Upselling وتخليه ياخد الباقة كاملة أو قطعتين بالعرض، تقنعه إزاي بأسلوب مستشار مش بياع زنّان؟", opts: ["تفهمه إن القطعة التانية هتكون بخصم إضافي وفرصة توفير حقيقية هتكمل دولابه بنفس السعر تقريباً.", "تقوله: 'العرض هيخلص كمان ربع ساعة ولو مخدتوش هتندم'.", "تقوله: 'السيستم مش هيقبل يبيع قطعة واحدة لوحدها'.", "تطلب منه يحاسب الأول وبعدين تقوله مخدتش العرض ليه."], c: 0 },
+      { id: 33, type: "mcq", w: 2.6, q: "في أوقات الذروة والزحمة في المحل (Peak Hours)، الأولوية الأولى للبياع على الفلور هي:", opts: ["يقعد يطبق الهدوم ويرص المقاسات بالمللي.", "يرحب بالناس بسرعة، ويوجه كل واحد للمقاس الصح، ويتحرك بخفة عشان يساعد أكبر عدد بدون تعطيل.", "يمسك عميل واحد بس يقعد معاه نص ساعة ويطنش باقي الناس.", "يقفل البروفات عشان ميعملش طوابير."], c: 1 },
+      { id: 34, type: "mcq", w: 2.6, q: "عميل مسك بيجامة وقالك: 'القصة دي حلوة بس اللون ده حاسس إنه هيسمرني ومش لايق على وشي'.. تتصرف إزاي؟", opts: ["تقوله: 'لا خالص اللون لايق عليك إنت بس مش واخد بالك'.", "تسيبه يدور لوحده على الرفوف لحد ما يزهق.", "تأيد وجهة نظره بذوق: 'تمام جداً.. نفس القصة دي بالظبط موجود منها اللون ده هيفتح وهيليق جداً مع حضرتك، تعالى نبص عليه'.", "تقوله: 'الموديل ده بينزل منه اللون ده بس في التشكيلة دي'."], c: 2 },
+      { id: 35, type: "mcq", w: 2.6, q: "يعني إيه جملة (Give a reason to return) وإنت بتودع العميل على الكاشير؟", opts: ["تقوله ميعاد نزول الكولكشن الجديد أو تديله خصم على زيارته الجاية عشان يرجعلك تاني عن حب.", "تنسى تديله الباقي عشان يضطر يرجعلك.", "تديله فاتورة ناقصة عشان يرجع يسأل عليها.", "تقوله إن عنده حساب متأخر لازم يجي يدفعه."], c: 0 },
+      { id: 36, type: "math", w: 4.5, q: "مسألة عملية (1): بائع في الفرع قفل شيفت مبيعات اليوم، وسجل السيستم إنه أصدر 40 فاتورة بيع، وإجمالي عدد القطع اللي خرجت في الفواتير دي كلها كان 100 قطعة ملابس وإكسسوارات.. احسب قيمة مؤشر الـ UPT الخاص بهذا البائع في هذا اليوم:", cAns: "2.5", unit: "قطعة / فاتورة" },
+      { id: 37, type: "math", w: 4.5, q: "مسألة عملية (2): خلال الويك إند، حقق أحد البائعين إجمالي مبيعات نقدية وفيزا على السيستم بلغت 48,000 جنيه مصري، وذلك من خلال إتمام 32 فاتورة بيع ناجحة.. احسب قيمة مؤشر الـ ATV لهذا البائع:", cAns: "1500", unit: "جنيه" }
+    ];
+
+    const STORAGE_KEY = "2S_FINAL_ASSESSMENT_SYSTEM_V5";
+    const EXAM_DURATION_SEC = 25 * 60;
+    const WHATSAPP_TARGET = "201118781551";
+
+    let state = {
+      status: "INIT",
+      candidateName: "",
+      startTime: null,
+      answers: {},
+      score: 0,
+      submittedAt: null,
+      timeRemaining: EXAM_DURATION_SEC,
+      isTimeout: false
+    };
+
+    let timerInterval = null;
+
+    function loadSavedState() {
+      const saved = safeStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try { state = JSON.parse(saved); } catch(e) {}
+      }
+    }
+
+    function persistState() {
+      safeStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    const screenIntro = document.getElementById("screenIntro");
+    const screenQuiz = document.getElementById("screenQuiz");
+    const screenResult = document.getElementById("screenResult");
+    const screenLocked = document.getElementById("screenLocked");
+    const inputName = document.getElementById("inputName");
+    const nameError = document.getElementById("nameError");
+    const timerDisplay = document.getElementById("timerDisplay");
+    const timerBadge = document.getElementById("timerBadge");
+    const progressBar = document.getElementById("progressBar");
+    const questionsContainer = document.getElementById("questionsContainer");
+    const scoreText = document.getElementById("scoreText");
+    const userNameDisplay = document.getElementById("userNameDisplay");
+    const userGradeStatus = document.getElementById("userGradeStatus");
+    const reviewBoxList = document.getElementById("reviewBoxList");
+    const lockedScoreSummary = document.getElementById("lockedScoreSummary");
+
+    function init() {
+      loadSavedState();
+      if (state.status === "SUBMITTED") {
+        showLockedScreen();
+      } else if (state.status === "RUNNING") {
+        startQuizSession(false);
+      } else {
+        screenIntro.classList.remove("hidden");
+      }
+    }
+
+    function startQuizDirect() {
+      const val = (inputName.value || "").trim();
+      if (val.length < 1) {
+        nameError.style.display = "block";
+        inputName.focus();
+        return;
+      }
+      nameError.style.display = "none";
+      state.candidateName = val;
+      state.status = "RUNNING";
+      state.startTime = Date.now();
+      state.timeRemaining = EXAM_DURATION_SEC;
+      state.answers = {};
+      persistState();
+      startQuizSession(true);
+    }
+
+    function startQuizSession(isNew) {
+      screenIntro.classList.add("hidden");
+      screenLocked.classList.add("hidden");
+      screenResult.classList.add("hidden");
+      screenQuiz.classList.remove("hidden");
+
+      renderQuestions();
+      updateProgressBar();
+
+      if (!isNew && state.startTime) {
+        const elapsedSec = Math.floor((Date.now() - state.startTime) / 1000);
+        state.timeRemaining = Math.max(0, EXAM_DURATION_SEC - elapsedSec);
+      }
+      startTimer();
+      window.scrollTo(0, 0);
+    }
+
+    function renderQuestions() {
+      questionsContainer.innerHTML = "";
+      const letters = ["أ", "ب", "ج", "د"];
+
+      quizData.forEach((qItem, idx) => {
+        const qCard = document.createElement("div");
+        qCard.className = "question-card";
+        qCard.id = `qCard_${qItem.id}`;
+
+        const qHeader = document.createElement("div");
+        qHeader.className = "q-header";
+        qHeader.innerHTML = `
+          <span class="q-badge">سؤال رقم ${idx + 1} من ${quizData.length}</span>
+          <span class="q-weight">${qItem.w} درجات</span>
+        `;
+
+        const qText = document.createElement("div");
+        qText.className = "q-text";
+        qText.textContent = qItem.q;
+
+        qCard.appendChild(qHeader);
+        qCard.appendChild(qText);
+
+        if (qItem.type === "mcq") {
+          const optionsGrid = document.createElement("div");
+          optionsGrid.className = "options-grid";
+
+          qItem.opts.forEach((optText, optIdx) => {
+            const optCard = document.createElement("div");
+            const isSelected = state.answers[qItem.id] === optIdx;
+            optCard.className = `option-card ${isSelected ? "selected" : ""}`;
+            optCard.id = `optBtn_${qItem.id}_${optIdx}`;
+            optCard.innerHTML = `
+              <span class="opt-letter">${letters[optIdx]}</span>
+              <span>${optText}</span>
+            `;
+
+            const doSelect = () => selectOption(qItem.id, optIdx);
+            optCard.addEventListener("click", doSelect);
+            optCard.addEventListener("touchend", function(e) {
+              e.preventDefault();
+              doSelect();
+            });
+
+            optionsGrid.appendChild(optCard);
+          });
+          qCard.appendChild(optionsGrid);
+        } else if (qItem.type === "math") {
+          const mathWrapper = document.createElement("div");
+          mathWrapper.style.marginTop = "10px";
+          const currentVal = state.answers[qItem.id] !== undefined ? state.answers[qItem.id] : "";
+          mathWrapper.innerHTML = `
+            <label style="display:block; font-size:0.86rem; font-weight:700; margin-bottom:6px; color:var(--ink-secondary);">
+              اكتب الناتج النهائي بالأرقام فقط (مثال: 2.5 أو 1500):
+            </label>
+            <input type="text" pattern="[0-9.]*" inputmode="decimal" class="math-field" id="mathInput_${qItem.id}" placeholder="اكتب الناتج هنا..." value="${currentVal}">
+          `;
+
+          const inp = mathWrapper.querySelector("input");
+          inp.addEventListener("input", (e) => {
+            handleMathInput(qItem.id, e.target.value);
+          });
+
+          qCard.appendChild(mathWrapper);
+        }
+
+        questionsContainer.appendChild(qCard);
+      });
+    }
+
+    function selectOption(questionId, optionIdx) {
+      state.answers[questionId] = optionIdx;
+      persistState();
+
+      const card = document.getElementById(`qCard_${questionId}`);
+      if (card) {
+        card.classList.remove("missing");
+        const q = quizData.find(item => item.id === questionId);
+        q.opts.forEach((_, idx) => {
+          const el = document.getElementById(`optBtn_${questionId}_${idx}`);
+          if (el) {
+            if (idx === optionIdx) el.classList.add("selected");
+            else el.classList.remove("selected");
+          }
+        });
+      }
+      updateProgressBar();
+    }
+
+    function handleMathInput(questionId, value) {
+      const trimmed = value.trim();
+      if (trimmed === "") delete state.answers[questionId];
+      else state.answers[questionId] = trimmed;
+      persistState();
+
+      const card = document.getElementById(`qCard_${questionId}`);
+      if (card && trimmed !== "") card.classList.remove("missing");
+      updateProgressBar();
+    }
+
+    function updateProgressBar() {
+      const answeredCount = Object.keys(state.answers).filter(k => state.answers[k] !== "").length;
+      const pct = (answeredCount / quizData.length) * 100;
+      progressBar.style.width = `${pct}%`;
+    }
+
+    function startTimer() {
+      updateTimerUI();
+      clearInterval(timerInterval);
+
+      timerInterval = setInterval(() => {
+        state.timeRemaining--;
+        updateTimerUI();
+
+        if (state.timeRemaining <= 300) timerBadge.classList.add("urgent");
+
+        if (state.timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          alert("انتهى وقت الاختبار المحدد!");
+          finishAssessment(true);
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const mins = Math.floor(state.timeRemaining / 60);
+      const secs = state.timeRemaining % 60;
+      timerDisplay.textContent = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    function submitQuizFinal() {
+      const missing = [];
+      quizData.forEach(q => {
+        if (state.answers[q.id] === undefined || state.answers[q.id] === "") {
+          missing.push(q.id);
+        }
+      });
+
+      if (missing.length > 0) {
+        const firstUnansweredId = missing[0];
+        const card = document.getElementById(`qCard_${firstUnansweredId}`);
+        if (card) {
+          card.classList.add("missing");
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        alert(`تنبيه: متبقي لديك (${missing.length}) سؤالاً بدون إجابة. يجب حل جميع الأسئلة للتسليم.`);
+        return;
+      }
+
+      if (confirm("هل أنت متأكد من تسليم إجاباتك النهائية؟ لن يمكنك التعديل بعد ذلك.")) {
+        finishAssessment(false);
+      }
+    }
+
+    function cleanNumber(str) {
+      if (!str) return "";
+      return str.toString().replace(/,/g, '').replace(/\s+/g, '').trim();
+    }
+
+    function finishAssessment(isAutoTimeout = false) {
+      clearInterval(timerInterval);
+
+      let finalScore = 0;
+      quizData.forEach(item => {
+        const userAnswer = state.answers[item.id];
+        if (item.type === "mcq") {
+          if (userAnswer === item.c) finalScore += item.w;
+        } else if (item.type === "math") {
+          if (parseFloat(cleanNumber(userAnswer)) === parseFloat(cleanNumber(item.cAns))) {
+            finalScore += item.w;
+          }
+        }
+      });
+
+      state.score = Math.round(finalScore);
+      state.status = "SUBMITTED";
+
+      const now = new Date();
+      state.submittedAt = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} - ${now.getHours()}:${now.getMinutes()}`;
+      state.isTimeout = isAutoTimeout;
+      persistState();
+
+      showResultsScreen();
+    }
+
+    function showResultsScreen() {
+      screenQuiz.classList.add("hidden");
+      screenIntro.classList.add("hidden");
+      screenLocked.classList.add("hidden");
+      screenResult.classList.remove("hidden");
+
+      timerDisplay.textContent = "00:00";
+      progressBar.style.width = "100%";
+
+      scoreText.textContent = state.score;
+      userNameDisplay.textContent = state.candidateName;
+
+      let statusMsg = "";
+      if (state.score >= 85) statusMsg = "تقييم ممتاز (Senior Floor Specialist) - جاهزية تامة على الفلور.";
+      else if (state.score >= 70) statusMsg = "تقييم جيد جداً (Retail Professional) - مستوى تطبيقي متميز.";
+      else statusMsg = "تقييم يحتاج لمتابعة وتطوير (Development Needed).";
+      userGradeStatus.textContent = statusMsg;
+
+      renderReview();
+      window.scrollTo(0, 0);
+    }
+
+    function renderReview() {
+      reviewBoxList.innerHTML = "";
+      const letters = ["أ", "ب", "ج", "د"];
+
+      quizData.forEach((qItem, idx) => {
+        const userChoice = state.answers[qItem.id];
+        let isCorrect = false;
+
+        if (qItem.type === "mcq") isCorrect = (userChoice === qItem.c);
+        else if (qItem.type === "math") isCorrect = (parseFloat(cleanNumber(userChoice)) === parseFloat(cleanNumber(qItem.cAns)));
+
+        const revItem = document.createElement("div");
+        revItem.className = `review-item ${isCorrect ? 'correct' : 'wrong'}`;
+
+        const qTitle = document.createElement("div");
+        qTitle.style.fontWeight = "700";
+        qTitle.style.fontSize = "0.92rem";
+        qTitle.style.marginBottom = "6px";
+        qTitle.textContent = `س${idx + 1}: ${qItem.q} (${qItem.w} درجات)`;
+        revItem.appendChild(qTitle);
+
+        if (qItem.type === "mcq") {
+          if (isCorrect) {
+            const okTag = document.createElement("div");
+            okTag.className = "answer-tag tag-c";
+            okTag.innerHTML = `<span>✅ إجابتك صحيحة: [${letters[userChoice]}] ${qItem.opts[userChoice]}</span>`;
+            revItem.appendChild(okTag);
+          } else {
+            const userTag = document.createElement("div");
+            userTag.className = "answer-tag tag-w";
+            const chosenText = userChoice !== undefined ? `[${letters[userChoice]}] ${qItem.opts[userChoice]}` : "لم يتم الإجابة";
+            userTag.innerHTML = `<span>❌ إجابتك: ${chosenText}</span>`;
+
+            const correctTag = document.createElement("div");
+            correctTag.className = "answer-tag tag-c";
+            correctTag.innerHTML = `<span>✔️ الإجابة الصحيحة: [${letters[qItem.c]}] ${qItem.opts[qItem.c]}</span>`;
+
+            revItem.appendChild(userTag);
+            revItem.appendChild(correctTag);
+          }
+        } else if (qItem.type === "math") {
+          if (isCorrect) {
+            const okTag = document.createElement("div");
+            okTag.className = "answer-tag tag-c";
+            okTag.innerHTML = `<span>✅ إجابتك صحيحة: ${qItem.cAns} (${qItem.unit})</span>`;
+            revItem.appendChild(okTag);
+          } else {
+            const userTag = document.createElement("div");
+            userTag.className = "answer-tag tag-w";
+            userTag.innerHTML = `<span>❌ إجابتك: ${userChoice || "فارغ"}</span>`;
+
+            const correctTag = document.createElement("div");
+            correctTag.className = "answer-tag tag-c";
+            correctTag.innerHTML = `<span>✔️ الناتج الصحيح: ${qItem.cAns} (${qItem.unit})</span>`;
+
+            revItem.appendChild(userTag);
+            revItem.appendChild(correctTag);
+          }
+        }
+
+        reviewBoxList.appendChild(revItem);
+      });
+    }
+
+    function sendWhatsappReport() {
+      const letters = ["أ", "ب", "ج", "د"];
+      let auditLog = `*تقرير تقييم مهارات البيع ورحلة العميل - 2S Egypt*\n`;
+      auditLog += `--------------------------------------\n`;
+      auditLog += `👤 *الموظف:* ${state.candidateName}\n`;
+      auditLog += `🎯 *الدرجة:* ${state.score} من 100 (${state.score}%)\n`;
+      auditLog += `🕒 *الوقت:* ${state.submittedAt || "مكتمل"}\n`;
+      auditLog += `⏱️ *الحالة:* ${state.isTimeout ? "تسليم تلقائي لنفاد الوقت" : "تسليم كامل بواسطة الموظف"}\n`;
+      auditLog += `--------------------------------------\n`;
+      auditLog += `*سجل المراجعة التفصيلي (37 سؤالاً):*\n\n`;
+
+      quizData.forEach((q, i) => {
+        const uAns = state.answers[q.id];
+        let isRight = false;
+        if (q.type === "mcq") isRight = (uAns === q.c);
+        else if (q.type === "math") isRight = (parseFloat(cleanNumber(uAns)) === parseFloat(cleanNumber(q.cAns)));
+
+        const mark = isRight ? `✅ صح` : `❌ خطأ`;
+        auditLog += `*س${i + 1}:* ${mark}\n`;
+
+        if (!isRight) {
+          if (q.type === "mcq") {
+            const userStr = uAns !== undefined ? letters[uAns] : "فارغ";
+            auditLog += `  - إجابتك: [${userStr}] | الصح: [${letters[q.c]}]\n`;
+          } else if (q.type === "math") {
+            auditLog += `  - إجابتك: [${uAns || "فارغ"}] | الصح: [${q.cAns}]\n`;
+          }
+        }
+      });
+
+      auditLog += `\n--------------------------------------\n`;
+      auditLog += `نظام التقييم والتشغيل الميداني - 2S Egypt`;
+
+      const text = encodeURIComponent(auditLog);
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const url = isIOS
+        ? `whatsapp://send?phone=${WHATSAPP_TARGET}&text=${text}`
+        : `https://api.whatsapp.com/send?phone=${WHATSAPP_TARGET}&text=${text}`;
+
+      window.location.href = url;
+    }
+
+    function showLockedScreen() {
+      screenIntro.classList.add("hidden");
+      screenQuiz.classList.add("hidden");
+      screenResult.classList.add("hidden");
+      screenLocked.classList.remove("hidden");
+
+      lockedScoreSummary.textContent = `الموظف: ${state.candidateName} | النتيجة: ${state.score} / 100`;
+    }
+
+    window.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
