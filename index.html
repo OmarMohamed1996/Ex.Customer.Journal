@@ -235,7 +235,6 @@
       border-radius: var(--radius-md);
       cursor: pointer;
       text-align: center;
-      touch-action: manipulation;
     }
 
     .btn-primary:active {
@@ -294,13 +293,14 @@
     .options-grid {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
+    /* Checkbox / Radio Item Container */
     .option-card {
       display: flex;
       align-items: center;
-      padding: 13px 15px;
+      padding: 12px 14px;
       background: #fafafa;
       border: 1.5px solid var(--border);
       border-radius: var(--radius-md);
@@ -308,32 +308,58 @@
       font-size: 0.9rem;
       font-weight: 600;
       color: var(--ink);
-      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: border-color 0.2s, background-color 0.2s;
     }
 
-    .option-card.selected {
-      background: var(--ink) !important;
-      color: #ffffff !important;
-      border-color: var(--ink) !important;
-    }
-
-    .opt-letter {
-      width: 26px;
-      height: 26px;
+    /* Checkbox Visual */
+    .check-box-circle {
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
-      background: rgba(0,0,0,0.06);
-      color: inherit;
+      border: 2px solid #a1a1aa;
+      background: #ffffff;
+      margin-left: 12px;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.78rem;
+      transition: all 0.2s ease;
+    }
+
+    .check-box-inner {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.2s ease;
+    }
+
+    .option-card.selected {
+      background: #f4f4f5;
+      border-color: var(--ink);
+    }
+
+    .option-card.selected .check-box-circle {
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .option-card.selected .check-box-inner {
+      background: #ffffff;
+    }
+
+    .opt-letter {
       font-weight: 800;
-      margin-left: 10px;
+      margin-left: 8px;
+      color: var(--ink-secondary);
       flex-shrink: 0;
     }
 
-    .option-card.selected .opt-letter {
-      background: rgba(255, 255, 255, 0.2);
+    .opt-text {
+      flex: 1;
+      line-height: 1.45;
     }
 
     .math-field {
@@ -394,7 +420,6 @@
       border: none;
       cursor: pointer;
       margin: 18px 0;
-      touch-action: manipulation;
     }
 
     .review-item {
@@ -580,7 +605,7 @@
       { id: 37, type: "math", w: 4.5, q: "مسألة عملية (2): خلال الويك إند، حقق أحد البائعين إجمالي مبيعات نقدية وفيزا على السيستم بلغت 48,000 جنيه مصري، وذلك من خلال إتمام 32 فاتورة بيع ناجحة.. احسب قيمة مؤشر الـ ATV لهذا البائع:", cAns: "1500", unit: "جنيه" }
     ];
 
-    const STORAGE_KEY = "2S_FINAL_ASSESSMENT_SYSTEM_V5";
+    const STORAGE_KEY = "2S_FINAL_ASSESSMENT_SYSTEM_V6";
     const EXAM_DURATION_SEC = 25 * 60;
     const WHATSAPP_TARGET = "201118781551";
 
@@ -701,16 +726,18 @@
             const isSelected = state.answers[qItem.id] === optIdx;
             optCard.className = `option-card ${isSelected ? "selected" : ""}`;
             optCard.id = `optBtn_${qItem.id}_${optIdx}`;
+
             optCard.innerHTML = `
-              <span class="opt-letter">${letters[optIdx]}</span>
-              <span>${optText}</span>
+              <div class="check-box-circle">
+                <div class="check-box-inner"></div>
+              </div>
+              <span class="opt-letter">[${letters[optIdx]}]</span>
+              <span class="opt-text">${optText}</span>
             `;
 
-            const doSelect = () => selectOption(qItem.id, optIdx);
-            optCard.addEventListener("click", doSelect);
-            optCard.addEventListener("touchend", function(e) {
-              e.preventDefault();
-              doSelect();
+            // Reliable click only - prevents swipe/scroll triggering
+            optCard.addEventListener("click", () => {
+              selectOption(qItem.id, optIdx);
             });
 
             optionsGrid.appendChild(optCard);
